@@ -10,6 +10,7 @@ import { copyToClipboard } from '../../utils/copy-to-board';
 import { ConfigProps } from '../../types';
 import G2ThemeTokenConfig from './theme-token/g2';
 import { AttributeTree } from './AttributeTree';
+import './index.less';
 import styles from './index.module.less';
 
 const OmitKeys = ['seriesCount', 'showAxisTitle'];

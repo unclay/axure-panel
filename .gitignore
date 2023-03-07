@@ -102,4 +102,4 @@ typings/
 # TernJS port file
 .tern-port
 
-.less.d.ts
+*.less.d.ts

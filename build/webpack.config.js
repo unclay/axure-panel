@@ -27,6 +27,12 @@ const webpackConfig = {
               // '@babel/plugin-proposal-class-properties',
               // '@babel/plugin-proposal-nullish-coalescing-operator',
               // '@babel/plugin-proposal-optional-chaining',
+              [
+                "@babel/plugin-proposal-decorators",
+                {
+                  "legacy": true
+                }
+              ],
               '@babel/plugin-transform-runtime',
               './build/webpack.plugin.css.modules.js',
             ],
@@ -45,11 +51,27 @@ const webpackConfig = {
               {
                 loader: 'css-loader',
                 options: {
-                  modules: true
+                  modules: {
+                    exportLocalsConvention: 'camelCase',
+                    localIdentName: '[name]--[local]-[hash:base64:5]'
+                  },
+                  // esModule: true
                 },
               },
               'postcss-loader',
-              'less-loader',
+              {
+                loader: 'less-loader',
+                options: {
+                  lessOptions: {
+                    import: true,
+                    javascriptEnabled: true,
+                    modifyVars: {
+                      'primary-color': '#873bf4',
+                      'font-family': 'Arial',
+                    },
+                  },
+                },
+              },
             ],
           },
           {
@@ -58,7 +80,20 @@ const webpackConfig = {
               '@teamsupercell/typings-for-css-modules-loader',
               'css-loader',
               'postcss-loader',
-              'less-loader',
+              {
+                loader: 'less-loader',
+                options: {
+                  lessOptions: {
+                    // strictMath: true,
+                    import: true,
+                    javascriptEnabled: true,
+                    modifyVars: {
+                      'primary-color': '#873bf4',
+                      'font-family': 'Arial',
+                    },
+                  },
+                },
+              },
             ],
           }
         ],

@@ -1,3 +1,4 @@
+// @ts-ignore nextline
 import { G2 } from '@antv/g2plot';
 import _ from 'lodash';
 

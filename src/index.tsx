@@ -8,13 +8,25 @@ import './assets/css/style.less';
 import Theme from './pages/theme';
 import { LanguageSwitcher } from './components/common/LanguageSwitcher';
 
-ReactDOM.render(
-  <div>
-    <LanguageSwitcher className="sd-sd"></LanguageSwitcher>
+const App = () => {
+  const onThemeChange = (config) => {
+    console.log(config);
+  };
+  return (
     <div>
-      <Theme></Theme>
+      <LanguageSwitcher className="sd-sd"></LanguageSwitcher>
+      <div>
+
+      </div>
+      <div>
+        <Theme onThemeChange={onThemeChange}></Theme>
+      </div>
     </div>
-  </div>,
+  );
+};
+
+ReactDOM.render(
+  <App></App>,
   document.getElementById('app')
 );
 // const root = createRoot(document.querySelector('#app'));

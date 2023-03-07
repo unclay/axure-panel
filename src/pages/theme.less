@@ -1,0 +1,31 @@
+
+.sider-trigger {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  top: 160px;
+  left: -13px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 0 2px rgba(0, 0 ,0, 0.6);
+}
+.antv-theme-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  transition: all 0.2s;
+  &.sider-collapsed {
+    width: 0px;
+    .sider-trigger {
+      transform: rotate(180deg);
+    }
+  }
+}

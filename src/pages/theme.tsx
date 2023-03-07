@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ConfigPanel } from '../components/config-panel';
 import { ConfigProps } from '../types';
 import _ from 'lodash';
 import { RightOutlined } from '@ant-design/icons';
-// import { DARK_THEME, LIGHT_THEME } from '../theme/default';
+import { DARK_THEME, LIGHT_THEME } from '../theme/default';
+import './theme.less';
 
-export default () => {
+const DEFAULT_CONFIG: Omit<ConfigProps, 'theme'> = {
+  seriesCount: 3,
+  showAxisTitle: true,
+};
+
+export default (props: any = {}) => {
   /** 主题 */
-  const [theme, setTheme] = useState({});
+  const [theme, setTheme] = useState(LIGHT_THEME);
   /** 其他和主题无关的配置项 */
-  const [config, setConfig] = useState({});
+  const [config, setConfig] = useState(DEFAULT_CONFIG);
   /** 侧边栏是否缩进状态 */
   const [configPanelCollapse, setConfigPanelCollapse] = useState(false);
+
+  useEffect(() => {
+    props.onThemeChange & props.onThemeChange(config);
+  }, [config]);
 
   /**
    * 处理配置变化, 如：seriesCount
    * @param args
    */
   const onConfigChange = (value: Partial<ConfigProps>) => {
+    console.log(config);
     setConfig(_.merge({}, config, value));
   };
 
@@ -26,7 +37,9 @@ export default () => {
    * @param value
    */
   const onThemeChange = (value: any) => {
-    setTheme(_.merge({}, theme, value));
+    const newTheme = _.merge({}, theme, value);
+    setTheme(newTheme);
+    props.onThemeChange && props.onThemeChange(newTheme);
   };
 
   let winHeight = 0;
@@ -41,7 +54,7 @@ export default () => {
   }
   
   return (
-    <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 300, height: window.innerHeight, overflowY: 'auto' }}>
+    <div className={`antv-theme-panel ${configPanelCollapse ? 'sider-collapsed' : ''}`} style={{ height: window.innerHeight }}>
       <RightOutlined
         className="sider-trigger"
         onClick={() => setConfigPanelCollapse(old => !old)}
