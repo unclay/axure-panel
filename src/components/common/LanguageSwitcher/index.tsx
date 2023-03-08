@@ -3,7 +3,7 @@ import cx from 'classnames';
 import i18n from '../../../utils/i18n';
 import styles from './index.module.less';
 
-export const LanguageSwitcher = ({ className }) => {
+export const LanguageSwitcher = ({ className, style } : any) => {
   const [language, setLanguage] = useState(i18n.language);
 
   const onClick = () => {
@@ -16,7 +16,7 @@ export const LanguageSwitcher = ({ className }) => {
   };
 
   return (
-    <div className={cx(styles.languageSwitcher, className)} onClick={onClick}>
+    <div className={cx(styles.languageSwitcher, className)} style={style} onClick={onClick}>
       <span className={cx({ [styles.unselected]: language !== 'zh_CN' })}>
         中
       </span>

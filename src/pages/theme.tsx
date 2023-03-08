@@ -20,7 +20,7 @@ export default (props: any = {}) => {
   const [configPanelCollapse, setConfigPanelCollapse] = useState(false);
 
   useEffect(() => {
-    props.onThemeChange & props.onThemeChange(config);
+    props.onThemeChange && props.onThemeChange(config);
   }, [config]);
 
   /**

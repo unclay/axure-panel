@@ -12,7 +12,7 @@ const prodConfig = config.dll.prod;
 const webpackConfig = {
   mode: 'none',
   entry: {
-    main: './src/index.tsx'
+    main: './src/panel.tsx'
   },
   module: {
     rules: [
@@ -106,7 +106,7 @@ const webpackConfig = {
   plugins: [
     // build html
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/panel.html',
       filename: 'index.html',
       inject: 'body',
     }),
